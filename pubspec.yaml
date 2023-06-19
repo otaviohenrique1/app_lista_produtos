@@ -41,6 +41,7 @@ dependencies:
   uuid: ^3.0.7
   sqflite: ^2.2.8+4
   ionicons: ^0.2.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
