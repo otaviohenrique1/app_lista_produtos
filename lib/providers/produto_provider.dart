@@ -1,8 +1,10 @@
+import 'package:app_lista_produtos/data/produto_dao.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:flutter/material.dart';
 
 class ProdutoProvider extends ChangeNotifier {
   List<ProdutoModel> _listaProdutos = [];
+  List<ProdutoModel> _listaProdutosBusca = [];
   ProdutoModel _produto = ProdutoModel(
     id: "",
     foto: "",
@@ -11,51 +13,36 @@ class ProdutoProvider extends ChangeNotifier {
     categoria: "",
     descricao: "",
     dataCriacao: "",
+    ativo: false,
+    idUsuario: "",
+    quantidade: 0,
+    unidade: "",
   );
 
   List<ProdutoModel> get listaProdutos => _listaProdutos;
+  List<ProdutoModel> get listaProdutosBusca => _listaProdutosBusca;
   ProdutoModel get produto => _produto;
 
-  adicionar(ProdutoModel produto) {
-    _listaProdutos.add(produto);
+  Future adicionar(ProdutoModel produto) async {
+    await ProdutoDao().save(produto);
     buscaTodos();
   }
 
-  remover(ProdutoModel produto) {
-    _listaProdutos.add(produto);
+  Future remover(String idTarefa) async {
+    await ProdutoDao().delete(idTarefa);
     buscaTodos();
   }
 
-  atualizar(ProdutoModel produto, String produtoId) {
-    for (var i = 0; i < _listaProdutos.length; i++) {
-      ProdutoModel item = _listaProdutos[i];
-      if (item.id == produtoId) {
-        item.nome = produto.nome;
-        item.preco = produto.preco;
-        item.categoria = produto.categoria;
-        item.descricao = produto.descricao;
-        break;
-      }
-    }
-    _listaProdutos.add(produto);
+  Future atualizar(ProdutoModel produto, String produtoId) async {
+    await ProdutoDao().update(produto, produtoId);
     buscaTodos();
   }
 
-  buscarPorId(String produtoId) {
-    ProdutoModel item = _listaProdutos.firstWhere(
-      (element) => element.id == produtoId,
-      orElse: () => ProdutoModel(
-        id: "",
-        foto: "",
-        nome: "",
-        preco: 0,
-        categoria: "",
-        descricao: "",
-        dataCriacao: "",
-      ),
-    );
-    if (item.id == produtoId) {
-      _produto = item;
+  buscarPorId(String produtoId) async {
+    List<ProdutoModel> data = await ProdutoDao().findByID(produtoId);
+    if (data.isNotEmpty) {
+      _produto = data.first;
+      notifyListeners();
     } else {
       _produto = ProdutoModel(
         id: "",
@@ -65,12 +52,22 @@ class ProdutoProvider extends ChangeNotifier {
         categoria: "",
         descricao: "",
         dataCriacao: "",
+        ativo: false,
+        idUsuario: "",
+        quantidade: 0,
+        unidade: "",
       );
+      notifyListeners();
     }
   }
 
-  buscaTodos() {
-    // _listaProdutos = listaProdutosTeste;
+  buscarPorNome(String nome) async {
+    _listaProdutosBusca = await ProdutoDao().findByNome(nome);
+    notifyListeners();
+  }
+
+  buscaTodos() async {
+    _listaProdutos = await ProdutoDao().findAll();
     notifyListeners();
   }
 }
