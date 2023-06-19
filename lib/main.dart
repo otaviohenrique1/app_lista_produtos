@@ -1,15 +1,19 @@
-import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_produtos/pages/login.dart';
 import 'package:provider/provider.dart';
+import 'package:app_lista_produtos/pages/novo_usuario.dart';
+import 'package:app_lista_produtos/providers/produto_provider.dart';
+import 'package:app_lista_produtos/providers/usuario_provider.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => ProdutoProvider()),
-    ],
-    child: const App(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProdutoProvider()),
+        ChangeNotifierProvider(create: (context) => UsuarioProvider()),
+      ],
+      child: const App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -33,7 +37,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const Login(),
+      home: const NovoUsuario(),
     );
   }
 }

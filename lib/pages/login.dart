@@ -41,21 +41,15 @@ class _LoginState extends State<Login> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: const EdgeInsets.all(16),
           child: Form(
             key: formKey,
             child: Column(
               children: [
-                // const Center(
-                //   child: Text(
-                //     "Login",
-                //     style: TextStyle(fontSize: 32),
-                //   ),
-                // ),
                 CampoTexto(
                   exibeLabel: true,
                   label: "E-mail",
-                  validator: validaCampoVazio,
+                  validator: validaEmail,
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   hintText: "Digite o seu e-mail",
@@ -66,7 +60,7 @@ class _LoginState extends State<Login> {
                   child: CampoTexto(
                     exibeLabel: true,
                     label: "Senha",
-                    validator: validaCampoVazio,
+                    validator: validaSenha,
                     keyboardType: TextInputType.visiblePassword,
                     controller: _senhaController,
                     hintText: "Digite a sua senha",
