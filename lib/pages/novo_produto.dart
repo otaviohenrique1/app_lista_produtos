@@ -84,7 +84,7 @@ class _NovoProdutoState extends State<NovoProduto> {
           idUsuario: idUsuario,
         ));
 
-        Navigator.push(
+        Navigator.pop(
           context,
           MaterialPageRoute(builder: (context) => const ListaProdutos()),
         );

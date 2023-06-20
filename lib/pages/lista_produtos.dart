@@ -25,11 +25,16 @@ class _ListaProdutosState extends State<ListaProdutos> {
       appBar: AppBar(
         title: const Text("Lista de produtos"),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
-        itemCount: produtoProvider.listaProdutos.length,
-        itemBuilder: (context, index) {
-          return Item(produto: produtoProvider.listaProdutos[index]);
+      body: Consumer<ProdutoProvider>(
+        builder: (context, produtoProviderConsumer, child) {
+          return ListView.builder(
+            padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
+            itemCount: produtoProviderConsumer.listaProdutos.length,
+            itemBuilder: (context, index) {
+              return Item(
+                  produto: produtoProviderConsumer.listaProdutos[index]);
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -64,14 +69,34 @@ class Item extends StatefulWidget {
 class _ItemState extends State<Item> {
   bool isSelected = false;
 
-  void onChanged(bool? value) {
-    setState(() {
-      isSelected = value!;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    isSelected = (widget.produto.ativo == "Sim") ? true : false;
+
+    ProdutoProvider produtoProvider =
+        Provider.of<ProdutoProvider>(context, listen: false);
+
+    void onChanged(bool? value) {
+      setState(() {
+        isSelected = value!;
+        produtoProvider.atualizar(
+          ProdutoModel(
+            id: widget.produto.id,
+            dataCriacao: widget.produto.dataCriacao,
+            nome: widget.produto.nome,
+            preco: widget.produto.preco,
+            descricao: widget.produto.descricao,
+            quantidade: widget.produto.quantidade,
+            unidade: widget.produto.unidade,
+            categoria: widget.produto.categoria,
+            ativo: (isSelected) ? "Sim" : "Não",
+            idUsuario: widget.produto.idUsuario,
+          ),
+          widget.produto.id,
+        );
+      });
+    }
+
     return Column(
       children: [
         ListTile(
@@ -80,20 +105,22 @@ class _ItemState extends State<Item> {
             widget.produto.nome,
             style: TextStyle(
               decoration: (isSelected)
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
+                  ? TextDecoration.none
+                  : TextDecoration.lineThrough,
             ),
           ),
           subtitle: Text(
             "${widget.produto.quantidade.toString()} ${widget.produto.unidade}",
             style: TextStyle(
               decoration: (isSelected)
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
+                  ? TextDecoration.none
+                  : TextDecoration.lineThrough,
             ),
           ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              produtoProvider.remover(widget.produto.id);
+            },
             icon: const Icon(Icons.delete),
           ),
           leading: Checkbox(
