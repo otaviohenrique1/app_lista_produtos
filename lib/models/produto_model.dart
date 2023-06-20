@@ -21,7 +21,8 @@ class ProdutoModel {
   String descricao;
   double quantidade;
   String unidade;
-  bool ativo;
+  String ativo;
+  // bool ativo;
   String idUsuario;
   String dataCriacao;
 }

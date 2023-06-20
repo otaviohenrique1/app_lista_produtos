@@ -1,3 +1,5 @@
+import 'package:app_lista_produtos/pages/lista_produtos.dart';
+import 'package:app_lista_produtos/pages/login.dart';
 import 'package:app_lista_produtos/pages/novo_produto.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +39,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const NovoProduto(),
+      home: const ListaProdutos(),
     );
   }
 }

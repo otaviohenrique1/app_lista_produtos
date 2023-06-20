@@ -1,3 +1,4 @@
+import 'package:app_lista_produtos/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_lista_produtos/components/botao.dart';
@@ -49,6 +50,10 @@ class _NovoUsuarioState extends State<NovoUsuario> {
           senha: senha,
           dataCriacao: geraDataHoraFormatada(),
         ));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Login()),
+        );
       }
     }
 
@@ -68,7 +73,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   child: CampoTexto(
                     exibeLabel: true,
                     label: "Nome",
-                    validator: validaEmail,
+                    validator: validaCampoVazio,
                     keyboardType: TextInputType.text,
                     controller: _nomeController,
                     hintText: "Digite o seu nome",

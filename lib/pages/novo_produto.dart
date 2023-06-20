@@ -1,11 +1,14 @@
 import 'package:app_lista_produtos/components/select.dart';
+import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/pages/lista_produtos.dart';
+import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:app_lista_produtos/utils/helpers.dart';
 import 'package:app_lista_produtos/utils/listas.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_produtos/components/campo_texto.dart';
 import 'package:app_lista_produtos/components/botao.dart';
 import 'package:app_lista_produtos/utils/validator.dart';
+import 'package:provider/provider.dart';
 
 class NovoProduto extends StatefulWidget {
   const NovoProduto({
@@ -41,6 +44,9 @@ class _NovoProdutoState extends State<NovoProduto> {
 
   @override
   Widget build(BuildContext context) {
+    ProdutoProvider produtoProvider =
+        Provider.of<ProdutoProvider>(context, listen: false);
+
     onSubmit() {
       if (formKey.currentState!.validate()) {
         String uuid = geraUuid();
@@ -54,6 +60,19 @@ class _NovoProdutoState extends State<NovoProduto> {
         bool ativo = isSelected;
         // String foto = "foto";
         String idUsuario = "187726dc-577a-4322-b691-68b0b2435e45";
+
+        produtoProvider.adicionar(ProdutoModel(
+          id: uuid,
+          dataCriacao: dataCriacao,
+          nome: nome,
+          preco: double.parse(preco),
+          descricao: descricao,
+          quantidade: double.parse(quantidade),
+          unidade: unidadeQuantidade,
+          categoria: categoria,
+          ativo: (ativo) ? "Sim" : "Não",
+          idUsuario: idUsuario,
+        ));
 
         Navigator.push(
           context,

@@ -3,8 +3,9 @@ import 'package:app_lista_produtos/models/usuario_model.dart';
 import 'package:flutter/material.dart';
 
 class UsuarioProvider extends ChangeNotifier {
-  List<UsuarioModel> _listaTarefas = [];
-  UsuarioModel _dadosTarefa = UsuarioModel(
+  List<UsuarioModel> _listaUsuarios = [];
+  List<UsuarioModel> _usuarioDados = [];
+  UsuarioModel _dadosUsuario = UsuarioModel(
     id: "",
     nome: "",
     email: "",
@@ -13,8 +14,9 @@ class UsuarioProvider extends ChangeNotifier {
   );
   String _idUsuario = "";
 
-  List<UsuarioModel> get listaTarefas => _listaTarefas;
-  UsuarioModel get dadosTarefa => _dadosTarefa;
+  List<UsuarioModel> get listaUsuarios => _listaUsuarios;
+  UsuarioModel get dadosUsuario => _dadosUsuario;
+  List<UsuarioModel> get usuarioDados => _usuarioDados;
   String get idUsuario => _idUsuario;
 
   UsuarioModel initialValueUsuarioModel = UsuarioModel(
@@ -41,7 +43,7 @@ class UsuarioProvider extends ChangeNotifier {
 
   Future delete(String idTarefa) async {
     await UsuarioDao().delete(idTarefa);
-    _dadosTarefa = initialValueUsuarioModel;
+    _dadosUsuario = initialValueUsuarioModel;
     findAll();
     // notifyListeners();
   }
@@ -52,23 +54,25 @@ class UsuarioProvider extends ChangeNotifier {
     // notifyListeners();
   }
 
-  Future<List<UsuarioModel>> login(String email, String senha) async {
-    return await UsuarioDao().login(email, senha);
+  login(String email, String senha) async {
+    List<UsuarioModel> data = await UsuarioDao().login(email, senha);
+    _usuarioDados = data;
+    notifyListeners();
   }
 
   findById(String idTarefa) async {
     List<UsuarioModel> data = await UsuarioDao().findById(idTarefa);
     if (data.isNotEmpty) {
-      _dadosTarefa = data.first;
+      _dadosUsuario = data.first;
       notifyListeners();
     } else {
-      _dadosTarefa = initialValueUsuarioModel;
+      _dadosUsuario = initialValueUsuarioModel;
       notifyListeners();
     }
   }
 
   findAll() async {
-    _listaTarefas = await UsuarioDao().findAll();
+    _listaUsuarios = await UsuarioDao().findAll();
     notifyListeners();
   }
 }

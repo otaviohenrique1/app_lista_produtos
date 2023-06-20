@@ -1,4 +1,8 @@
+import 'package:app_lista_produtos/models/produto_model.dart';
+import 'package:app_lista_produtos/pages/novo_produto.dart';
+import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ListaProdutos extends StatefulWidget {
   const ListaProdutos({
@@ -12,19 +16,27 @@ class ListaProdutos extends StatefulWidget {
 class _ListaProdutosState extends State<ListaProdutos> {
   @override
   Widget build(BuildContext context) {
+    ProdutoProvider produtoProvider =
+        Provider.of<ProdutoProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lista de produtos"),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
-        itemCount: 30,
+        itemCount: produtoProvider.listaProdutos.length,
         itemBuilder: (context, index) {
-          return const Item();
+          return Item(produto: produtoProvider.listaProdutos[index]);
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NovoProduto()),
+          );
+        },
         backgroundColor: Colors.blue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
@@ -38,7 +50,10 @@ class _ListaProdutosState extends State<ListaProdutos> {
 class Item extends StatefulWidget {
   const Item({
     super.key,
+    required this.produto,
   });
+
+  final ProdutoModel produto;
 
   @override
   State<Item> createState() => _ItemState();
@@ -60,7 +75,7 @@ class _ItemState extends State<Item> {
         ListTile(
           onTap: () {},
           title: Text(
-            "Maçã",
+            widget.produto.nome,
             style: TextStyle(
               decoration: (isSelected)
                   ? TextDecoration.lineThrough
@@ -68,7 +83,7 @@ class _ItemState extends State<Item> {
             ),
           ),
           subtitle: Text(
-            "1 Kg",
+            "${widget.produto.quantidade.toString()} ${widget.produto.unidade}",
             style: TextStyle(
               decoration: (isSelected)
                   ? TextDecoration.lineThrough

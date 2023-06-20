@@ -10,7 +10,8 @@ class ProdutoDao {
       "$_unidade TEXT, "
       "$_categoria TEXT, "
       "$_descricao TEXT, "
-      "$_ativo BOOLEAN, "
+      "$_ativo TEXT, "
+      // "$_ativo BOOLEAN, "
       "$_idUsuario TEXT, "
       "$_preco DOUBLE, "
       // "$_foto TEXT, "
@@ -99,6 +100,7 @@ class ProdutoDao {
         categoria: linha[_categoria],
         descricao: linha[_descricao],
         ativo: linha[_ativo],
+        // ativo: (linha[_ativo] == 1) ? true : false,
         // foto: linha[_foto],
         preco: linha[_preco],
         idUsuario: linha[_idUsuario],
