@@ -47,6 +47,16 @@ class _NovoProdutoState extends State<NovoProduto> {
     ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context, listen: false);
 
+    colocaValorNoCampo() {
+      _nomeController.text = "Maçã";
+      _precoController.text = "10";
+      _descricaoController.text = "Fruta";
+      _quantidadeController.text = "1";
+      dropdownValueUnidadeQuantidade = unidadeQuantidade[4];
+      dropdownValueCategoria = categoria[1];
+      isSelected = true;
+    }
+
     onSubmit() {
       if (formKey.currentState!.validate()) {
         String uuid = geraUuid();
@@ -213,6 +223,13 @@ class _NovoProdutoState extends State<NovoProduto> {
                 Botao(
                   onPressed: onSubmit,
                   label: "Salvar",
+                  fontColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                const SizedBox(height: 16),
+                Botao(
+                  onPressed: colocaValorNoCampo,
+                  label: "Dados",
                   fontColor: Colors.white,
                   backgroundColor: Colors.blue,
                 ),

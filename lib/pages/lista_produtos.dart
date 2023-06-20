@@ -19,6 +19,8 @@ class _ListaProdutosState extends State<ListaProdutos> {
     ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context, listen: false);
 
+    produtoProvider.buscaTodos();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lista de produtos"),
