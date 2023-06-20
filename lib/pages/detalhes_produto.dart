@@ -24,6 +24,14 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
 
     produtoProvider.buscarPorId(widget.id);
 
+    String formataValorMonetario(double valor) {
+      return "R\$ ${valor.toStringAsFixed(2).replaceAll(".", ",")}";
+    }
+
+    String formataQuantidadeUnidade(double quantidade, String unidade) {
+      return "${quantidade.toString()} $unidade";
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Novo produto"),
@@ -42,13 +50,12 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
                   _Item(titulo: "Nome:", descricao: produto.nome),
                   _Item(
                     titulo: "Quantidade:",
-                    descricao:
-                        "${produto.quantidade.toString()} ${produto.unidade}",
+                    descricao: formataQuantidadeUnidade(
+                        produto.quantidade, produto.unidade),
                   ),
                   _Item(
                     titulo: "Preço:",
-                    descricao:
-                        "R\$ ${produto.preco.toStringAsFixed(2).replaceAll(".", ",")}",
+                    descricao: formataValorMonetario(produto.preco),
                   ),
                   _Item(titulo: "Descrição:", descricao: produto.descricao),
                   _Item(titulo: "Categoria:", descricao: produto.categoria),
