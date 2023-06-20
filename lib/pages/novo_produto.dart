@@ -2,6 +2,7 @@ import 'package:app_lista_produtos/components/select.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/pages/lista_produtos.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
+import 'package:app_lista_produtos/providers/usuario_provider.dart';
 import 'package:app_lista_produtos/utils/helpers.dart';
 import 'package:app_lista_produtos/utils/listas.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,8 @@ class _NovoProdutoState extends State<NovoProduto> {
   Widget build(BuildContext context) {
     ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context, listen: false);
+    UsuarioProvider usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
 
     colocaValorNoCampo() {
       _nomeController.text = "Maçã";
@@ -69,7 +72,7 @@ class _NovoProdutoState extends State<NovoProduto> {
         String categoria = dropdownValueCategoria;
         bool ativo = isSelected;
         // String foto = "foto";
-        String idUsuario = "187726dc-577a-4322-b691-68b0b2435e45";
+        String idUsuario = usuarioProvider.idUsuarioTeste;
 
         produtoProvider.adicionar(ProdutoModel(
           id: uuid,

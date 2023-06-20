@@ -1,4 +1,5 @@
 import 'package:app_lista_produtos/models/produto_model.dart';
+import 'package:app_lista_produtos/pages/detalhes_produto.dart';
 import 'package:app_lista_produtos/pages/novo_produto.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,16 @@ class _ItemState extends State<Item> {
     return Column(
       children: [
         ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetalhesProduto(
+                  id: widget.produto.id,
+                ),
+              ),
+            );
+          },
           title: Text(
             widget.produto.nome,
             style: TextStyle(

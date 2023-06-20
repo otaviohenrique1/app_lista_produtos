@@ -14,6 +14,8 @@ class UsuarioProvider extends ChangeNotifier {
   );
   String _idUsuario = "";
 
+  final String idUsuarioTeste = "187726dc-577a-4322-b691-68b0b2435e45";
+
   List<UsuarioModel> get listaUsuarios => _listaUsuarios;
   UsuarioModel get dadosUsuario => _dadosUsuario;
   List<UsuarioModel> get usuarioDados => _usuarioDados;
