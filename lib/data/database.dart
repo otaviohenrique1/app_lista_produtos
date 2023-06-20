@@ -6,7 +6,7 @@ import 'package:app_lista_produtos/data/usuario_dao.dart';
 Future<Database> getDatabase() async {
   final String path = join(
     await getDatabasesPath(),
-    "database.db",
+    "app_lista_produtos_db.db",
   );
   return openDatabase(
     path,

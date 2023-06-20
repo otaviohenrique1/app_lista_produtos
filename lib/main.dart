@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:app_lista_produtos/pages/novo_usuario.dart';
+import 'package:app_lista_produtos/pages/login.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
 
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
@@ -37,7 +37,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const NovoUsuario(),
+      home: const Login(),
     );
   }
 }

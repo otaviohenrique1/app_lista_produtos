@@ -1,8 +1,12 @@
-import 'package:app_lista_produtos/components/botao.dart';
-import 'package:app_lista_produtos/utils/validator.dart';
+import 'package:app_lista_produtos/pages/esqueceu_senha.dart';
 import 'package:flutter/material.dart';
-
-import '../components/campo_texto.dart';
+import 'package:provider/provider.dart';
+import 'package:app_lista_produtos/pages/home_page.dart';
+import 'package:app_lista_produtos/pages/novo_usuario.dart';
+import 'package:app_lista_produtos/components/campo_texto.dart';
+import 'package:app_lista_produtos/components/botao.dart';
+import 'package:app_lista_produtos/providers/usuario_provider.dart';
+import 'package:app_lista_produtos/utils/validator.dart';
 
 class Login extends StatefulWidget {
   const Login({
@@ -25,16 +29,86 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  novoUsuario() {}
-
-  esqueceuSenha() {}
-
-  onSubmit() {
-    if (formKey.currentState!.validate()) {}
-  }
-
   @override
   Widget build(BuildContext context) {
+    novoUsuario() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const NovoUsuario()),
+      );
+    }
+
+    esqueceuSenha() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const EsqueceuSenha()),
+      );
+    }
+
+    // UsuarioProvider usuarioProvider =
+    //     Provider.of<UsuarioProvider>(context, listen: false);
+
+    onSubmit() {
+      if (formKey.currentState!.validate()) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+        // String email = _emailController.text;
+        // String senha = _senhaController.text;
+
+        // showDialog<String>(
+        //   context: context,
+        //   builder: (BuildContext context) => AlertDialog(
+        //     title: const Text('Aviso!'),
+        //     content: SizedBox(
+        //       height: 100,
+        //       child: Column(
+        //         children: [
+        //           Text(email),
+        //           Text(senha),
+        //           // const Row(
+        //           //   mainAxisAlignment: MainAxisAlignment.center,
+        //           //   children: [
+        //           //     Text('Deseja sair do aplicativo?'),
+        //           //   ],
+        //           // ),
+        //         ],
+        //       ),
+        //     ),
+        //     icon: const Icon(
+        //       Icons.warning_amber_rounded,
+        //       size: 64,
+        //     ),
+        //     iconColor: Colors.red,
+        //     actions: <Widget>[
+        //       TextButton(
+        //         onPressed: () => Navigator.pop(context),
+        //         // onPressed: () => Navigator.pop(context, 'Cancel'),
+        //         child: const Text('Não'),
+        //       ),
+        //       TextButton(
+        //         onPressed: () {
+        //           Navigator.pop(context);
+        //           // Navigator.pop(context, 'OK');
+        //           // Navigator.pushReplacement(
+        //           //   context,
+        //           //   MaterialPageRoute(builder: (context) => const Login()),
+        //           // );
+        //         },
+        //         child: const Text('Sim'),
+        //       ),
+        //     ],
+        //   ),
+        // );
+
+        // usuarioProvider
+        //     .login(email, senha)
+        //     .then((value) => const AlertDialog(content: Text("Achou")))
+        //     .catchError((e) => const AlertDialog(content: Text("Nao Achou")));
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -71,7 +145,7 @@ class _LoginState extends State<Login> {
                   onPressed: onSubmit,
                   label: "Entrar",
                   fontColor: Colors.white,
-                  backgroundColor: Colors.blueGrey,
+                  backgroundColor: Colors.blue,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),

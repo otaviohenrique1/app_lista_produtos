@@ -11,5 +11,5 @@ class UsuarioModel {
   String nome;
   String email;
   String senha;
-  DateTime dataCriacao;
+  String dataCriacao;
 }

@@ -9,7 +9,7 @@ class UsuarioProvider extends ChangeNotifier {
     nome: "",
     email: "",
     senha: "",
-    dataCriacao: DateTime.now(),
+    dataCriacao: "",
   );
   String _idUsuario = "";
 
@@ -22,7 +22,7 @@ class UsuarioProvider extends ChangeNotifier {
     nome: "",
     email: "",
     senha: "",
-    dataCriacao: DateTime.now(),
+    dataCriacao: "",
   );
 
   addIdUsuario(String idUsuario) {
