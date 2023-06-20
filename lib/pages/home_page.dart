@@ -1,3 +1,5 @@
+import 'package:app_lista_produtos/components/botao.dart';
+import 'package:app_lista_produtos/pages/lista_produtos.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,38 +12,58 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: ListView(
+        padding: const EdgeInsets.all(22),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Botao(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListaProdutos()),
+                );
+              },
+              fontColor: Colors.white,
+              label: "Lista",
+              backgroundColor: Colors.lightBlue,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Botao(
+              onPressed: () {},
+              fontColor: Colors.white,
+              label: "Busca",
+              backgroundColor: Colors.lightBlue,
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Botao(
+              onPressed: () {},
+              fontColor: Colors.white,
+              label: "Perfil",
+              backgroundColor: Colors.lightBlue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Botao(
+              onPressed: () {},
+              fontColor: Colors.white,
+              label: "Sair",
+              backgroundColor: Colors.lightBlue,
+            ),
+          ),
+        ],
       ),
     );
   }

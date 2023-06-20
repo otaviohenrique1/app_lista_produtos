@@ -1,3 +1,4 @@
+import 'package:app_lista_produtos/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_lista_produtos/pages/login.dart';
@@ -37,7 +38,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const Login(),
+      home: const HomePage(),
     );
   }
 }

@@ -60,7 +60,7 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
                   child: CampoTexto(
                     exibeLabel: true,
                     label: "Codigo de recuperação",
-                    validator: validaEmail,
+                    validator: validaCampoVazio,
                     keyboardType: TextInputType.number,
                     controller: _codigoRecuperacaoController,
                     hintText: "Digite o codigo de recuperação",

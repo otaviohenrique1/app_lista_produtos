@@ -30,7 +30,7 @@ class _AlteracaoSenhaState extends State<AlteracaoSenha> {
     onSubmit() {
       if (formKey.currentState!.validate()) {
         String senha = _senhaController.text;
-        Navigator.pushReplacement(
+        Navigator.pop(
           context,
           MaterialPageRoute(builder: (context) => const Login()),
         );
