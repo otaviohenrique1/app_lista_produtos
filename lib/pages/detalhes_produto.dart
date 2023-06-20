@@ -1,5 +1,6 @@
 import 'package:app_lista_produtos/components/botao.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
+import 'package:app_lista_produtos/pages/editar_produto.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +68,16 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
                     child: Botao(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditarProduto(
+                              id: produto.id,
+                            ),
+                          ),
+                        );
+                      },
                       label: "Editar",
                       fontColor: Colors.white,
                       backgroundColor: Colors.blue,

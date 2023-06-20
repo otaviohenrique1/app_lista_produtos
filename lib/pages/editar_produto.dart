@@ -1,5 +1,6 @@
 import 'package:app_lista_produtos/components/select.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
+import 'package:app_lista_produtos/pages/detalhes_produto.dart';
 import 'package:app_lista_produtos/pages/lista_produtos.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
@@ -67,7 +68,7 @@ class _EditarProdutoState extends State<EditarProduto> {
 
     onSubmit() {
       if (formKey.currentState!.validate()) {
-        String uuid = produto.id;
+        String id = produto.id;
         String dataCriacao = produto.dataCriacao;
         String nome = _nomeController.text;
         String preco = _precoController.text;
@@ -79,22 +80,26 @@ class _EditarProdutoState extends State<EditarProduto> {
         // String foto = "foto";
         String idUsuario = produto.idUsuario;
 
-        produtoProvider.adicionar(ProdutoModel(
-          id: uuid,
-          dataCriacao: dataCriacao,
-          nome: nome,
-          preco: double.parse(preco),
-          descricao: descricao,
-          quantidade: double.parse(quantidade),
-          unidade: unidadeQuantidade,
-          categoria: categoria,
-          ativo: (ativo) ? "Sim" : "Não",
-          idUsuario: idUsuario,
-        ));
+        produtoProvider.atualizar(
+          ProdutoModel(
+            id: id,
+            dataCriacao: dataCriacao,
+            nome: nome,
+            preco: double.parse(preco),
+            descricao: descricao,
+            quantidade: double.parse(quantidade),
+            unidade: unidadeQuantidade,
+            categoria: categoria,
+            ativo: (ativo) ? "Sim" : "Não",
+            idUsuario: idUsuario,
+          ),
+          id,
+        );
 
-        Navigator.pop(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const ListaProdutos()),
+          MaterialPageRoute(
+              builder: (context) => DetalhesProduto(id: produto.id)),
         );
       }
     }
