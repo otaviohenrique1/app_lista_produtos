@@ -1,11 +1,9 @@
 import 'package:app_lista_produtos/pages/esqueceu_senha.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:app_lista_produtos/pages/home_page.dart';
 import 'package:app_lista_produtos/pages/novo_usuario.dart';
 import 'package:app_lista_produtos/components/campo_texto.dart';
 import 'package:app_lista_produtos/components/botao.dart';
-import 'package:app_lista_produtos/providers/usuario_provider.dart';
 import 'package:app_lista_produtos/utils/validator.dart';
 
 class Login extends StatefulWidget {

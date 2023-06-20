@@ -1,7 +1,6 @@
-import 'package:app_lista_produtos/pages/home_page.dart';
+import 'package:app_lista_produtos/pages/novo_produto.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:app_lista_produtos/pages/login.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
 
@@ -38,7 +37,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomePage(),
+      home: const NovoProduto(),
     );
   }
 }

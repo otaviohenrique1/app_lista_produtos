@@ -28,7 +28,7 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
   Widget build(BuildContext context) {
     onSubmit() {
       if (formKey.currentState!.validate()) {
-        String codigoRecuperacao = _codigoRecuperacaoController.text;
+        // String codigoRecuperacao = _codigoRecuperacaoController.text;
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const AlteracaoSenha()),

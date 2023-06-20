@@ -7,7 +7,7 @@ class ProdutoProvider extends ChangeNotifier {
   List<ProdutoModel> _listaProdutosBusca = [];
   ProdutoModel _produto = ProdutoModel(
     id: "",
-    foto: "",
+    // foto: "",
     nome: "",
     preco: 0,
     categoria: "",
@@ -46,7 +46,7 @@ class ProdutoProvider extends ChangeNotifier {
     } else {
       _produto = ProdutoModel(
         id: "",
-        foto: "",
+        // foto: "",
         nome: "",
         preco: 0,
         categoria: "",

@@ -13,7 +13,7 @@ class ProdutoDao {
       "$_ativo BOOLEAN, "
       "$_idUsuario TEXT, "
       "$_preco DOUBLE, "
-      "$_foto TEXT, "
+      // "$_foto TEXT, "
       "$_dataCriacao DATETIME"
       ")";
 
@@ -25,7 +25,7 @@ class ProdutoDao {
   static const String _categoria = "categoria";
   static const String _descricao = "descricao";
   static const String _ativo = "ativo";
-  static const String _foto = "foto";
+  // static const String _foto = "foto";
   static const String _preco = "preco";
   static const String _idUsuario = "idUsuario";
   static const String _dataCriacao = "dataCriacao";
@@ -82,7 +82,7 @@ class ProdutoDao {
     produtos[_idUsuario] = produto.idUsuario;
     produtos[_idUsuario] = produto.idUsuario;
     produtos[_idUsuario] = produto.idUsuario;
-    produtos[_foto] = produto.foto;
+    // produtos[_foto] = produto.foto;
     produtos[_preco] = produto.preco;
     produtos[_dataCriacao] = produto.dataCriacao;
     return produtos;
@@ -99,7 +99,7 @@ class ProdutoDao {
         categoria: linha[_categoria],
         descricao: linha[_descricao],
         ativo: linha[_ativo],
-        foto: linha[_foto],
+        // foto: linha[_foto],
         preco: linha[_preco],
         idUsuario: linha[_idUsuario],
         dataCriacao: linha[_dataCriacao],

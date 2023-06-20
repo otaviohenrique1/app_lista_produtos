@@ -27,7 +27,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   Widget build(BuildContext context) {
     onSubmit() {
       if (formKey.currentState!.validate()) {
-        String email = _emailController.text;
+        // String email = _emailController.text;
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const CodigoRecuperacao()),

@@ -1,7 +1,7 @@
 class ProdutoModel {
   ProdutoModel({
     required this.id,
-    required this.foto,
+    // required this.foto,
     required this.nome,
     required this.preco,
     required this.categoria,
@@ -14,7 +14,7 @@ class ProdutoModel {
   });
 
   String id;
-  String foto;
+  // String foto;
   String nome;
   double preco;
   String categoria;
