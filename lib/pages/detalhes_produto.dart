@@ -1,5 +1,6 @@
 import 'package:app_lista_produtos/components/aviso_dialog.dart';
 import 'package:app_lista_produtos/components/botao.dart';
+import 'package:app_lista_produtos/components/item.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/pages/editar_produto.dart';
 import 'package:app_lista_produtos/pages/lista_produtos.dart';
@@ -49,21 +50,21 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _Item(titulo: "ID:", descricao: produto.id),
-                  _Item(titulo: "Nome:", descricao: produto.nome),
-                  _Item(
+                  Item(titulo: "ID:", descricao: produto.id),
+                  Item(titulo: "Nome:", descricao: produto.nome),
+                  Item(
                     titulo: "Quantidade:",
                     descricao: formataQuantidadeUnidade(
                         produto.quantidade, produto.unidade),
                   ),
-                  _Item(
+                  Item(
                     titulo: "Preço:",
                     descricao: formataValorMonetario(produto.preco),
                   ),
-                  _Item(titulo: "Descrição:", descricao: produto.descricao),
-                  _Item(titulo: "Categoria:", descricao: produto.categoria),
-                  _Item(titulo: "Ativo:", descricao: produto.ativo),
-                  _Item(
+                  Item(titulo: "Descrição:", descricao: produto.descricao),
+                  Item(titulo: "Categoria:", descricao: produto.categoria),
+                  Item(titulo: "Ativo:", descricao: produto.ativo),
+                  Item(
                     titulo: "Data e criação:",
                     descricao: produto.dataCriacao,
                   ),
@@ -111,38 +112,6 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _Item extends StatelessWidget {
-  const _Item({
-    // ignore: unused_element
-    super.key,
-    required this.titulo,
-    required this.descricao,
-  });
-
-  final String titulo;
-  final String descricao;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            titulo,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-            descricao,
-            textAlign: TextAlign.right,
-            style: const TextStyle(fontSize: 18),
-          ),
-        ),
-        const Divider()
-      ],
     );
   }
 }

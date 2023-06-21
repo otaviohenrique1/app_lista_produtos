@@ -57,6 +57,13 @@ class _NovoUsuarioState extends State<NovoUsuario> {
       }
     }
 
+    colocaValorNoCampo() {
+      _nomeController.text = "Jeca";
+      _emailController.text = "jeca@email.com";
+      _senhaController.text = "0123456789";
+      _repitaSenhaController.text = "0123456789";
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Novo usuario"),
@@ -120,6 +127,13 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 Botao(
                   onPressed: onSubmit,
                   label: "Cadastrar",
+                  fontColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                const SizedBox(height: 16),
+                Botao(
+                  onPressed: colocaValorNoCampo,
+                  label: "Dados",
                   fontColor: Colors.white,
                   backgroundColor: Colors.blue,
                 ),

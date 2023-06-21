@@ -39,7 +39,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const ListaProdutos(),
+      home: const Login(),
     );
   }
 }
