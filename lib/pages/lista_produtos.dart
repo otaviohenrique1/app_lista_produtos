@@ -33,8 +33,9 @@ class _ListaProdutosState extends State<ListaProdutos> {
             padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
             itemCount: produtoProviderConsumer.listaProdutos.length,
             itemBuilder: (context, index) {
-              return _Item(
-                  produto: produtoProviderConsumer.listaProdutos[index]);
+              ProdutoModel produtoItem =
+                  produtoProviderConsumer.listaProdutos[index];
+              return _Item(produto: produtoItem);
             },
           );
         },

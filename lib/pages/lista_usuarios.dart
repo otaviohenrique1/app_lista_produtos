@@ -1,3 +1,4 @@
+import 'package:app_lista_produtos/models/usuario_model.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,17 +30,14 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
             padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
             itemCount: usuarioProviderConsumer.listaUsuarios.length,
             itemBuilder: (context, index) {
+              UsuarioModel usuarioItem =
+                  usuarioProviderConsumer.listaUsuarios[index];
               return Column(
                 children: [
                   ListTile(
-                    title: Text(
-                        usuarioProviderConsumer.listaUsuarios[index].email),
-                    subtitle: Text(
-                        usuarioProviderConsumer.listaUsuarios[index].senha),
-                    trailing: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.delete),
-                    ),
+                    title: Text(usuarioItem.email),
+                    subtitle: Text(usuarioItem.senha),
+                    onTap: () {},
                   ),
                   const Divider(),
                 ],
