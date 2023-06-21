@@ -1,6 +1,8 @@
+import 'package:app_lista_produtos/components/aviso_dialog.dart';
 import 'package:app_lista_produtos/components/botao.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/pages/editar_produto.dart';
+import 'package:app_lista_produtos/pages/lista_produtos.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,7 +86,21 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
                     ),
                   ),
                   Botao(
-                    onPressed: () {},
+                    onPressed: () {
+                      avisoDialog(
+                        context: context,
+                        mensagem: "Deseja remover a tarefa?",
+                        onPressedCancel: () => Navigator.pop(context),
+                        onPressedConfirm: () {
+                          Navigator.pop(context, 'OK');
+                          produtoProviderConsumer.remover(produto.id);
+                          Navigator.pop(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ListaProdutos()));
+                        },
+                      );
+                    },
                     label: "Remover",
                     fontColor: Colors.white,
                     backgroundColor: Colors.red,

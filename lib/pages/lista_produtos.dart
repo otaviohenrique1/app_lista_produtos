@@ -33,7 +33,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
             padding: const EdgeInsets.fromLTRB(0, 16, 0, 80),
             itemCount: produtoProviderConsumer.listaProdutos.length,
             itemBuilder: (context, index) {
-              return Item(
+              return _Item(
                   produto: produtoProviderConsumer.listaProdutos[index]);
             },
           );
@@ -56,8 +56,9 @@ class _ListaProdutosState extends State<ListaProdutos> {
   }
 }
 
-class Item extends StatefulWidget {
-  const Item({
+class _Item extends StatefulWidget {
+  const _Item({
+    // ignore: unused_element
     super.key,
     required this.produto,
   });
@@ -65,10 +66,10 @@ class Item extends StatefulWidget {
   final ProdutoModel produto;
 
   @override
-  State<Item> createState() => _ItemState();
+  State<_Item> createState() => _ItemState();
 }
 
-class _ItemState extends State<Item> {
+class _ItemState extends State<_Item> {
   bool isSelected = false;
 
   @override
