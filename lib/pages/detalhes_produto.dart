@@ -38,7 +38,7 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Novo produto"),
+        title: const Text("Detalhes do produto"),
       ),
       body: SingleChildScrollView(
         child: Padding(

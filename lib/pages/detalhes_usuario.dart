@@ -33,7 +33,7 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Novo produto"),
+        title: const Text("Detalhes do usuario"),
       ),
       body: SingleChildScrollView(
         child: Padding(

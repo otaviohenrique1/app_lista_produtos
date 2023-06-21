@@ -112,7 +112,7 @@ class _EditarProdutoState extends State<EditarProduto> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Novo produto"),
+        title: const Text("Editar produto"),
       ),
       body: SingleChildScrollView(
         child: Padding(
