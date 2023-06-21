@@ -96,7 +96,7 @@ class _EditarProdutoState extends State<EditarProduto> {
           id,
         );
 
-        Navigator.push(
+        Navigator.pop(
           context,
           MaterialPageRoute(
               builder: (context) => DetalhesProduto(id: produto.id)),

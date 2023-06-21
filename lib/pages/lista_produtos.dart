@@ -1,3 +1,4 @@
+import 'package:app_lista_produtos/components/aviso_dialog.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/pages/detalhes_produto.dart';
 import 'package:app_lista_produtos/pages/novo_produto.dart';
@@ -129,7 +130,15 @@ class _ItemState extends State<Item> {
           ),
           trailing: IconButton(
             onPressed: () {
-              produtoProvider.remover(widget.produto.id);
+              avisoDialog(
+                context: context,
+                mensagem: "Deseja remover o produto?",
+                onPressedCancel: () => Navigator.pop(context),
+                onPressedConfirm: () {
+                  Navigator.pop(context, 'OK');
+                  produtoProvider.remover(widget.produto.id);
+                },
+              );
             },
             icon: const Icon(Icons.delete),
           ),

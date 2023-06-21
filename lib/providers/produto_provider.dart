@@ -42,7 +42,7 @@ class ProdutoProvider extends ChangeNotifier {
     List<ProdutoModel> data = await ProdutoDao().findByID(produtoId);
     if (data.isNotEmpty) {
       _produto = data.first;
-      notifyListeners();
+      buscaTodos();
     } else {
       _produto = ProdutoModel(
         id: "",
@@ -57,13 +57,13 @@ class ProdutoProvider extends ChangeNotifier {
         quantidade: 0,
         unidade: "",
       );
-      notifyListeners();
+      buscaTodos();
     }
   }
 
   buscarPorNome(String nome) async {
     _listaProdutosBusca = await ProdutoDao().findByNome(nome);
-    notifyListeners();
+    buscaTodos();
   }
 
   buscaTodos() async {
