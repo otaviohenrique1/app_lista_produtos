@@ -1,3 +1,4 @@
+import 'package:app_lista_produtos/pages/detalhes_usuario.dart';
 import 'package:app_lista_produtos/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,10 @@ import 'package:app_lista_produtos/utils/validator.dart';
 class EditarUsuario extends StatefulWidget {
   const EditarUsuario({
     super.key,
+    required this.id,
   });
+
+  final String id;
 
   @override
   State<EditarUsuario> createState() => _EditarUsuarioState();
@@ -38,30 +42,37 @@ class _EditarUsuarioState extends State<EditarUsuario> {
     UsuarioProvider usuarioProvider =
         Provider.of<UsuarioProvider>(context, listen: false);
 
+    usuarioProvider.findById(widget.id);
+    UsuarioModel usuario = usuarioProvider.dadosUsuario;
+    _nomeController.text = usuario.nome;
+    _emailController.text = usuario.email;
+    _senhaController.text = usuario.senha;
+    _repitaSenhaController.text = usuario.senha;
+
     onSubmit() {
       if (formKey.currentState!.validate()) {
         String nome = _nomeController.text;
         String email = _emailController.text;
         String senha = _senhaController.text;
-        usuarioProvider.save(UsuarioModel(
-          id: geraUuid(),
-          nome: nome,
-          email: email,
-          senha: senha,
-          dataCriacao: geraDataHoraFormatada(),
-        ));
-        Navigator.push(
+        usuarioProvider.update(
+          UsuarioModel(
+            id: usuario.id,
+            nome: nome,
+            email: email,
+            senha: senha,
+            dataCriacao: usuario.dataCriacao,
+          ),
+          usuario.id,
+        );
+        Navigator.pop(
           context,
-          MaterialPageRoute(builder: (context) => const Login()),
+          MaterialPageRoute(
+            builder: (context) => DetalhesUsuario(
+              id: usuario.id,
+            ),
+          ),
         );
       }
-    }
-
-    colocaValorNoCampo() {
-      _nomeController.text = "Jeca";
-      _emailController.text = "jeca@email.com";
-      _senhaController.text = "0123456789";
-      _repitaSenhaController.text = "0123456789";
     }
 
     return Scaffold(
@@ -126,14 +137,7 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                 ),
                 Botao(
                   onPressed: onSubmit,
-                  label: "Cadastrar",
-                  fontColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                ),
-                const SizedBox(height: 16),
-                Botao(
-                  onPressed: colocaValorNoCampo,
-                  label: "Dados",
+                  label: "Salvar",
                   fontColor: Colors.white,
                   backgroundColor: Colors.blue,
                 ),

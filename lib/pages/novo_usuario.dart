@@ -50,7 +50,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
           senha: senha,
           dataCriacao: geraDataHoraFormatada(),
         ));
-        Navigator.push(
+        Navigator.pop(
           context,
           MaterialPageRoute(builder: (context) => const Login()),
         );

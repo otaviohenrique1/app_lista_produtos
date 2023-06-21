@@ -4,6 +4,7 @@ import 'package:app_lista_produtos/components/item.dart';
 import 'package:app_lista_produtos/models/produto_model.dart';
 import 'package:app_lista_produtos/models/usuario_model.dart';
 import 'package:app_lista_produtos/pages/editar_produto.dart';
+import 'package:app_lista_produtos/pages/editar_usuario.dart';
 import 'package:app_lista_produtos/pages/lista_produtos.dart';
 import 'package:app_lista_produtos/providers/produto_provider.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
@@ -58,7 +59,7 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditarProduto(
+                            builder: (context) => EditarUsuario(
                               id: usuario.id,
                             ),
                           ),

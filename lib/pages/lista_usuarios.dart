@@ -1,4 +1,5 @@
 import 'package:app_lista_produtos/models/usuario_model.dart';
+import 'package:app_lista_produtos/pages/detalhes_usuario.dart';
 import 'package:app_lista_produtos/providers/usuario_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,16 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
                   ListTile(
                     title: Text(usuarioItem.email),
                     subtitle: Text(usuarioItem.senha),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetalhesUsuario(
+                            id: usuarioItem.id,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   const Divider(),
                 ],
