@@ -15,6 +15,9 @@ class UsuarioProvider extends ChangeNotifier {
   String _idUsuario = "";
 
   final String idUsuarioTeste = "187726dc-577a-4322-b691-68b0b2435e45";
+  final String nomeUsuarioTeste = "Juca";
+  final String emailUsuarioTeste = "juca@email.com";
+  final String senhaUsuarioTeste = "0123456789";
 
   List<UsuarioModel> get listaUsuarios => _listaUsuarios;
   UsuarioModel get dadosUsuario => _dadosUsuario;
@@ -34,6 +37,7 @@ class UsuarioProvider extends ChangeNotifier {
   }
 
   removeIdUsuario() {
+    _usuarioDados = [];
     addIdUsuario("");
   }
 
@@ -57,6 +61,7 @@ class UsuarioProvider extends ChangeNotifier {
   }
 
   login(String email, String senha) async {
+    _usuarioDados = [];
     List<UsuarioModel> data = await UsuarioDao().login(email, senha);
     _usuarioDados = data;
     notifyListeners();

@@ -48,6 +48,7 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
                 children: [
                   Item(titulo: "ID:", descricao: usuario.id),
                   Item(titulo: "Nome:", descricao: usuario.nome),
+                  Item(titulo: "E-mail:", descricao: usuario.email),
                   Item(
                     titulo: "Senha:",
                     descricao: escondeSenha(usuario.senha),

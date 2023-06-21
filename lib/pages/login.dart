@@ -33,6 +33,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    String erro = "";
+    String mensagemErro = "Usuario ou senha invalidos";
+
     novoUsuario() {
       Navigator.push(
         context,
@@ -52,17 +55,27 @@ class _LoginState extends State<Login> {
 
     onSubmit() {
       if (formKey.currentState!.validate()) {
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => const HomePage()),
-        // );
         String email = _emailController.text;
         String senha = _senhaController.text;
 
         usuarioProvider.login(email, senha);
         List<UsuarioModel> data = usuarioProvider.listaUsuarios;
-        print(data.length);
+        if (data.isEmpty) {
+          erro = mensagemErro;
+        } else {
+          erro = "";
+          usuarioProvider.addIdUsuario(data.first.id);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );
+        }
       }
+    }
+
+    colocaValorNoCampo() {
+      _emailController.text = "jeca@email.com";
+      _senhaController.text = "9876543210";
     }
 
     return Scaffold(
@@ -76,6 +89,10 @@ class _LoginState extends State<Login> {
             key: formKey,
             child: Column(
               children: [
+                Visibility(
+                  visible: (erro.isNotEmpty) ? true : false,
+                  child: Text(erro),
+                ),
                 CampoTexto(
                   exibeLabel: true,
                   label: "E-mail",
@@ -134,18 +151,25 @@ class _LoginState extends State<Login> {
                     ),
                   )),
                 ),
-                Botao(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ListaUsuarios()),
-                    );
-                  },
-                  label: "Usuarios",
-                  fontColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                ),
+                // Botao(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => const ListaUsuarios()),
+                //     );
+                //   },
+                //   label: "Usuarios",
+                //   fontColor: Colors.white,
+                //   backgroundColor: Colors.blue,
+                // ),
+                // const SizedBox(height: 16),
+                // Botao(
+                //   onPressed: colocaValorNoCampo,
+                //   label: "Dados",
+                //   fontColor: Colors.white,
+                //   backgroundColor: Colors.blue,
+                // ),
               ],
             ),
           ),
